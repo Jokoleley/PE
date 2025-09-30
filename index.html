@@ -20,30 +20,137 @@
             padding: 15px;
         }
 
-        .header {
+        .login-container {
+            max-width: 400px;
+            margin: 50px auto;
             background: white;
-            border-radius: 15px;
-            padding: 25px 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
             text-align: center;
         }
 
-        .header h1 {
+        .login-header {
+            margin-bottom: 30px;
+        }
+
+        .login-header h1 {
             color: #333;
             margin: 0 0 10px 0;
-            font-size: 2.2em;
+            font-size: 2.5em;
             background: linear-gradient(135deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .header p {
-            color: #666;
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
             font-size: 1em;
-            margin: 5px 0;
-            line-height: 1.4;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .header-left h1 {
+            color: #333;
+            margin: 0 0 5px 0;
+            font-size: 2em;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-left p {
+            color: #666;
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        .user-info {
+            text-align: right;
+            color: #333;
+        }
+
+        .user-info h3 {
+            margin: 0 0 5px 0;
+            color: #667eea;
+        }
+
+        .user-info p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .logout-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #c82333;
         }
 
         .main-menu {
@@ -108,6 +215,21 @@
             font-size: 0.95em;
         }
 
+        .progress-indicator {
+            background: #e9ecef;
+            height: 8px;
+            border-radius: 4px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
         .section {
             display: none;
             background: white;
@@ -159,6 +281,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
         }
 
         .sport-card:hover {
@@ -191,6 +314,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
         }
 
         .quiz-card:hover {
@@ -331,19 +455,42 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
-        .progress-bar {
-            background: rgba(255,255,255,0.3);
-            height: 6px;
-            border-radius: 3px;
-            margin-top: 15px;
-            overflow: hidden;
+        .lesson-card.completed {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
         }
 
-        .progress-fill {
+        .lesson-card.in-progress {
+            background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+        }
+
+        .progress-stats {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .stat-card {
             background: white;
-            height: 100%;
-            border-radius: 3px;
-            transition: width 0.3s ease;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
         }
 
         @media (max-width: 768px) {
@@ -352,15 +499,14 @@
             }
             
             .header {
-                padding: 20px 15px;
+                padding: 15px;
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
             }
             
-            .header h1 {
-                font-size: 1.8em;
-            }
-            
-            .header p {
-                font-size: 0.9em;
+            .user-info {
+                text-align: center;
             }
             
             .main-menu {
@@ -389,6 +535,10 @@
                 width: 100%;
                 margin: 5px 0;
             }
+
+            .progress-stats {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 480px) {
@@ -396,8 +546,9 @@
                 padding: 8px;
             }
             
-            .header h1 {
-                font-size: 1.6em;
+            .login-container {
+                margin: 20px auto;
+                padding: 30px 20px;
             }
             
             .menu-icon, .sport-icon, .quiz-icon {
@@ -413,153 +564,332 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>🏃‍♂️ PE Master</h1>
-            <p>Complete Physical Education Learning Platform</p>
-            <p>Develop Skills • Learn Values • Track Progress • Have Fun</p>
-        </div>
-
-        <!-- Main Menu -->
-        <div id="mainMenu" class="main-menu">
-            <div class="menu-card" onclick="showSection('sports')">
-                <span class="menu-icon">🏀</span>
-                <h2>Sports Assessment</h2>
-                <p>Progressive skill tracking across multiple sports. Master techniques, improve performance, and track your development through structured lessons and assessments.</p>
+        <!-- Login Screen -->
+        <div id="loginScreen" class="login-container">
+            <div class="login-header">
+                <h1>🏃‍♂️ PE Master</h1>
+                <p>Student Login Portal</p>
             </div>
             
-            <div class="menu-card" onclick="showSection('quizzes')">
-                <span class="menu-icon">🧠</span>
-                <h2>PE Knowledge & Values</h2>
-                <p>Interactive quizzes covering sportsmanship, teamwork, body awareness, safety, and the social aspects of physical education.</p>
-            </div>
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="studentName">Full Name</label>
+                    <input type="text" id="studentName" required placeholder="Enter your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="studentId">Student ID</label>
+                    <input type="text" id="studentId" required placeholder="Enter your student ID">
+                </div>
+                
+                <div class="form-group">
+                    <label for="studentClass">Class</label>
+                    <select id="studentClass" required>
+                        <option value="">Select your class</option>
+                        <option value="Y1C">Year 1C</option>
+                        <option value="Y1H">Year 1H</option>
+                        <option value="Y1I">Year 1I</option>
+                        <option value="Y1S">Year 1S</option>
+                        <option value="Y1J">Year 1J</option>
+                        <option value="Y1B">Year 1B</option>
+                        <option value="Y2C">Year 2C</option>
+                        <option value="Y2H">Year 2H</option>
+                        <option value="Y2I">Year 2I</option>
+                        <option value="Y2S">Year 2S</option>
+                        <option value="Y2J">Year 2J</option>
+                        <option value="Y2B">Year 2B</option>
+                        <option value="Y3C">Year 3C</option>
+                        <option value="Y3H">Year 3H</option>
+                        <option value="Y3I">Year 3I</option>
+                        <option value="Y3S">Year 3S</option>
+                        <option value="Y3J">Year 3J</option>
+                        <option value="Y3B">Year 3B</option>
+                        <option value="Y4C">Year 4C</option>
+                        <option value="Y4H">Year 4H</option>
+                        <option value="Y4I">Year 4I</option>
+                        <option value="Y4S">Year 4S</option>
+                        <option value="Y4J">Year 4J</option>
+                        <option value="Y4B">Year 4B</option>
+                        <option value="Y5C">Year 5C</option>
+                        <option value="Y5H">Year 5H</option>
+                        <option value="Y5I">Year 5I</option>
+                        <option value="Y5S">Year 5S</option>
+                        <option value="Y5J">Year 5J</option>
+                        <option value="Y5B">Year 5B</option>
+                        <option value="Y6C">Year 6C</option>
+                        <option value="Y6H">Year 6H</option>
+                        <option value="Y6I">Year 6I</option>
+                        <option value="Y6S">Year 6S</option>
+                        <option value="Y6J">Year 6J</option>
+                        <option value="Y6B">Year 6B</option>
+                        <option value="Y7C">Year 7C</option>
+                        <option value="Y7H">Year 7H</option>
+                        <option value="Y7I">Year 7I</option>
+                        <option value="Y7S">Year 7S</option>
+                        <option value="Y7J">Year 7J</option>
+                        <option value="Y7B">Year 7B</option>
+                        <option value="Y8C">Year 8C</option>
+                        <option value="Y8H">Year 8H</option>
+                        <option value="Y8I">Year 8I</option>
+                        <option value="Y8S">Year 8S</option>
+                        <option value="Y8J">Year 8J</option>
+                        <option value="Y8B">Year 8B</option>
+                        <option value="Y9C">Year 9C</option>
+                        <option value="Y9H">Year 9H</option>
+                        <option value="Y9I">Year 9I</option>
+                        <option value="Y9S">Year 9S</option>
+                        <option value="Y9J">Year 9J</option>
+                        <option value="Y9B">Year 9B</option>
+                        <option value="Y10C">Year 10C</option>
+                        <option value="Y10H">Year 10H</option>
+                        <option value="Y10I">Year 10I</option>
+                        <option value="Y10S">Year 10S</option>
+                        <option value="Y10J">Year 10J</option>
+                        <option value="Y10B">Year 10B</option>
+                        <option value="Y11C">Year 11C</option>
+                        <option value="Y11H">Year 11H</option>
+                        <option value="Y11I">Year 11I</option>
+                        <option value="Y11S">Year 11S</option>
+                        <option value="Y11J">Year 11J</option>
+                        <option value="Y11B">Year 11B</option>
+                        <option value="Y12C">Year 12C</option>
+                        <option value="Y12H">Year 12H</option>
+                        <option value="Y12I">Year 12I</option>
+                        <option value="Y12S">Year 12S</option>
+                        <option value="Y12J">Year 12J</option>
+                        <option value="Y12B">Year 12B</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    🚀 Start Learning
+                </button>
+            </form>
         </div>
 
-        <!-- Sports Section -->
-        <div id="sports" class="section">
-            <button class="back-btn" onclick="showMainMenu()">← Back to Main Menu</button>
-            <h2>🏆 Sports Assessment & Tracking</h2>
-            <p>Choose a sport to begin your progressive learning journey with structured lessons and skill assessments.</p>
-            
-            <div class="sports-grid">
-                <div class="sport-card" onclick="showSport('basketball')">
-                    <span class="sport-icon">🏀</span>
-                    <h3>Basketball</h3>
-                    <p>Dribbling, shooting, passing, defense, and game strategy</p>
+        <!-- Main App (Hidden until login) -->
+        <div id="mainApp" style="display: none;">
+            <div class="header">
+                <div class="header-left">
+                    <h1>🏃‍♂️ PE Master</h1>
+                    <p>Complete Physical Education Learning Platform</p>
                 </div>
-                
-                <div class="sport-card" onclick="showSport('soccer')">
-                    <span class="sport-icon">⚽</span>
-                    <h3>Soccer</h3>
-                    <p>Ball control, passing, shooting, positioning, and tactics</p>
-                </div>
-                
-                <div class="sport-card" onclick="showSport('volleyball')">
-                    <span class="sport-icon">🏐</span>
-                    <h3>Volleyball</h3>
-                    <p>Serving, spiking, setting, blocking, and team coordination</p>
-                </div>
-                
-                <div class="sport-card" onclick="showSport('tennis')">
-                    <span class="sport-icon">🎾</span>
-                    <h3>Tennis</h3>
-                    <p>Forehand, backhand, serving, footwork, and match play</p>
-                </div>
-                
-                <div class="sport-card" onclick="showSport('athletics')">
-                    <span class="sport-icon">🏃‍♂️</span>
-                    <h3>Track & Field</h3>
-                    <p>Running, jumping, throwing, technique, and performance</p>
-                </div>
-                
-                <div class="sport-card" onclick="showSport('gymnastics')">
-                    <span class="sport-icon">🤸‍♀️</span>
-                    <h3>Gymnastics</h3>
-                    <p>Balance, flexibility, strength, coordination, and routines</p>
+                <div class="user-info">
+                    <h3 id="welcomeUser"></h3>
+                    <p id="userClass"></p>
+                    <p id="userProgress"></p>
+                    <button class="logout-btn" onclick="logout()">Logout</button>
                 </div>
             </div>
-        </div>
 
-        <!-- Quizzes Section -->
-        <div id="quizzes" class="section">
-            <button class="back-btn" onclick="showMainMenu()">← Back to Main Menu</button>
-            <h2>🧠 PE Knowledge & Values Quizzes</h2>
-            <p>Test your understanding of physical education principles, values, and body awareness through interactive quizzes.</p>
-            
-            <div class="quiz-grid">
-                <div class="quiz-card" onclick="startQuiz('values')">
-                    <span class="quiz-icon">🤝</span>
-                    <h3>PE Values & Ethics</h3>
-                    <p>Respect, fair play, teamwork, and sportsmanship</p>
+            <!-- Progress Overview -->
+            <div id="progressOverview" class="progress-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="quizzesCompleted">0</div>
+                    <div class="stat-label">Quizzes Completed</div>
                 </div>
-                
-                <div class="quiz-card" onclick="startQuiz('body')">
-                    <span class="quiz-icon">💪</span>
-                    <h3>Body Awareness & Health</h3>
-                    <p>Understanding your body, injury prevention, and wellness</p>
+                <div class="stat-card">
+                    <div class="stat-number" id="averageScore">0%</div>
+                    <div class="stat-label">Average Quiz Score</div>
                 </div>
-                
-                <div class="quiz-card" onclick="startQuiz('motor')">
-                    <span class="quiz-icon">🎯</span>
-                    <h3>Motor Skills & Movement</h3>
-                    <p>Coordination, balance, agility, and movement patterns</p>
+                <div class="stat-card">
+                    <div class="stat-number" id="lessonsCompleted">0</div>
+                    <div class="stat-label">PE Lessons Completed</div>
                 </div>
-                
-                <div class="quiz-card" onclick="startQuiz('social')">
-                    <span class="quiz-icon">👥</span>
-                    <h3>Social Roles in PE</h3>
-                    <p>Refereeing, coaching, leadership, and communication</p>
-                </div>
-                
-                <div class="quiz-card" onclick="startQuiz('safety')">
-                    <span class="quiz-icon">🛡️</span>
-                    <h3>Safety & Responsibility</h3>
-                    <p>Risk awareness, equipment care, and personal responsibility</p>
-                </div>
-                
-                <div class="quiz-card" onclick="startQuiz('nutrition')">
-                    <span class="quiz-icon">🥗</span>
-                    <h3>Nutrition & Performance</h3>
-                    <p>Healthy eating, hydration, and performance optimization</p>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalProgress">0%</div>
+                    <div class="stat-label">Overall Progress</div>
                 </div>
             </div>
-        </div>
 
-        <!-- Basketball Sport Detail -->
-        <div id="basketballDetail" class="section">
-            <button class="back-btn" onclick="showSection('sports')">← Back to Sports</button>
-            <h2>🏀 Basketball Assessment Program</h2>
-            <p>Master basketball through 10 progressive lessons with comprehensive skill tracking.</p>
-            
-            <div class="lesson-grid" id="basketballLessons">
-                <!-- Basketball lessons will be populated here -->
+            <!-- Main Menu -->
+            <div id="mainMenu" class="main-menu">
+                <div class="menu-card" onclick="showSection('sports')">
+                    <span class="menu-icon">🏀</span>
+                    <h2>Sports Assessment</h2>
+                    <p>Progressive skill tracking across multiple sports. Master techniques, improve performance, and track your development.</p>
+                    <div class="progress-indicator">
+                        <div class="progress-fill" id="sportsProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <div class="menu-card" onclick="showSection('quizzes')">
+                    <span class="menu-icon">🧠</span>
+                    <h2>PE Knowledge & Values</h2>
+                    <p>Interactive quizzes covering sportsmanship, teamwork, body awareness, safety, and social aspects of PE.</p>
+                    <div class="progress-indicator">
+                        <div class="progress-fill" id="quizProgress" style="width: 0%"></div>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <!-- Quiz Container -->
-        <div id="quizContainer" class="section">
-            <button class="back-btn" onclick="showSection('quizzes')">← Back to Quizzes</button>
-            <div id="quizContent">
-                <!-- Quiz content will be populated here -->
+            <!-- Sports Section -->
+            <div id="sports" class="section">
+                <button class="back-btn" onclick="showMainMenu()">← Back to Main Menu</button>
+                <h2>🏆 Sports Assessment & Tracking</h2>
+                <p>Choose a sport to begin your progressive learning journey with structured lessons and skill assessments.</p>
+                
+                <div class="sports-grid">
+                    <div class="sport-card" onclick="showSport('basketball')">
+                        <span class="sport-icon">🏀</span>
+                        <h3>Basketball</h3>
+                        <p>Dribbling, shooting, passing, defense, and game strategy</p>
+                        <div class="progress-indicator">
+                            <div class="progress-fill" id="basketballProgress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="sport-card" onclick="showSport('soccer')">
+                        <span class="sport-icon">⚽</span>
+                        <h3>Soccer</h3>
+                        <p>Ball control, passing, shooting, positioning, and tactics</p>
+                        <div class="progress-indicator">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="sport-card" onclick="showSport('volleyball')">
+                        <span class="sport-icon">🏐</span>
+                        <h3>Volleyball</h3>
+                        <p>Serving, spiking, setting, blocking, and team coordination</p>
+                        <div class="progress-indicator">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="sport-card" onclick="showSport('tennis')">
+                        <span class="sport-icon">🎾</span>
+                        <h3>Tennis</h3>
+                        <p>Forehand, backhand, serving, footwork, and match play</p>
+                        <div class="progress-indicator">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="sport-card" onclick="showSport('athletics')">
+                        <span class="sport-icon">🏃‍♂️</span>
+                        <h3>Track & Field</h3>
+                        <p>Running, jumping, throwing, technique, and performance</p>
+                        <div class="progress-indicator">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="sport-card" onclick="showSport('gymnastics')">
+                        <span class="sport-icon">🤸‍♀️</span>
+                        <h3>Gymnastics</h3>
+                        <p>Balance, flexibility, strength, coordination, and routines</p>
+                        <div class="progress-indicator">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quizzes Section -->
+            <div id="quizzes" class="section">
+                <button class="back-btn" onclick="showMainMenu()">← Back to Main Menu</button>
+                <h2>🧠 PE Knowledge & Values Quizzes</h2>
+                <p>Test your understanding of physical education principles, values, and body awareness through interactive quizzes.</p>
+                
+                <div class="quiz-grid">
+                    <div class="quiz-card" onclick="startQuiz('values')">
+                        <span class="quiz-icon">🤝</span>
+                        <h3>PE Values & Ethics</h3>
+                        <p>Respect, fair play, teamwork, and sportsmanship</p>
+                        <div class="progress-indicator">
+                            <div class="progress-fill" id="valuesProgress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-card" onclick="startQuiz('body')">
+                        <span class="quiz-icon">💪</span>
+                        <h3>Body Awareness & Health</h3>
+                        <p>Understanding your body, injury prevention, and wellness</p>
+                        <div class="progress-indicator">
+                            <div class="progress-fill" id="bodyProgress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-card" onclick="startQuiz('motor')">
+                        <span class="quiz-icon">🎯</span>
+                        <h3>Motor Skills & Movement</h3>
+                        <p>Coordination, balance, agility, and movement patterns</p>
+                        <div class="progress-indicator">
+                            <div class="progress-fill" id="motorProgress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-card" onclick="startQuiz('social')">
+                        <span class="quiz-icon">👥</span>
+                        <h3>Social Roles in PE</h3>
+                        <p>Refereeing, coaching, leadership, and communication</p>
+                        <div class="progress-indicator">
+                            <div class="progress-fill" id="socialProgress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-card" onclick="startQuiz('safety')">
+                        <span class="quiz-icon">🛡️</span>
+                        <h3>Safety & Responsibility</h3>
+                        <p>Risk awareness, equipment care, and personal responsibility</p>
+                        <div class="progress-indicator">
+                            <div class="progress-fill" id="safetyProgress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-card" onclick="startQuiz('nutrition')">
+                        <span class="quiz-icon">🥗</span>
+                        <h3>Nutrition & Performance</h3>
+                        <p>Healthy eating, hydration, and performance optimization</p>
+                        <div class="progress-indicator">
+                            <div class="progress-fill" id="nutritionProgress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Basketball Sport Detail -->
+            <div id="basketballDetail" class="section">
+                <button class="back-btn" onclick="showSection('sports')">← Back to Sports</button>
+                <h2>🏀 Basketball Assessment Program</h2>
+                <p>Master basketball through 10 progressive lessons with comprehensive skill tracking.</p>
+                
+                <div class="lesson-grid" id="basketballLessons">
+                    <!-- Basketball lessons will be populated here -->
+                </div>
+            </div>
+
+            <!-- Quiz Container -->
+            <div id="quizContainer" class="section">
+                <button class="back-btn" onclick="showSection('quizzes')">← Back to Quizzes</button>
+                <div id="quizContent">
+                    <!-- Quiz content will be populated here -->
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        // Student data management
+        let currentStudent = null;
+        let studentData = {};
+
         // Basketball lessons data
         const basketballLessons = [
-            { id: 1, title: "Basic Ball Handling", purpose: "Learn fundamental dribbling techniques and ball control", progress: 100 },
-            { id: 2, title: "Passing Fundamentals", purpose: "Master chest pass, bounce pass, and overhead pass techniques", progress: 100 },
-            { id: 3, title: "Shooting Basics", purpose: "Develop proper shooting form and free throw technique", progress: 100 },
-            { id: 4, title: "Defensive Positioning", purpose: "Learn basic defensive stance and movement principles", progress: 100 },
-            { id: 5, title: "Offensive Movement", purpose: "Understand cutting, screening, and creating space", progress: 100 },
-            { id: 6, title: "Game Rules & Refereeing", purpose: "Learn basketball rules and practice making calls", progress: 100 },
-            { id: 7, title: "Team Play & Strategy", purpose: "Develop teamwork skills and basic game strategies", progress: 100 },
-            { id: 8, title: "Advanced Dribbling", purpose: "Master crossover, behind-the-back, and pressure dribbling", progress: 60 },
-            { id: 9, title: "Game Situations", purpose: "Apply skills in realistic game scenarios and pressure situations", progress: 30 },
-            { id: 10, title: "Mastery Assessment", purpose: "Demonstrate all skills in a comprehensive final evaluation", progress: 0 }
+            { id: 1, title: "Basic Ball Handling", purpose: "Learn fundamental dribbling techniques and ball control" },
+            { id: 2, title: "Passing Fundamentals", purpose: "Master chest pass, bounce pass, and overhead pass techniques" },
+            { id: 3, title: "Shooting Basics", purpose: "Develop proper shooting form and free throw technique" },
+            { id: 4, title: "Defensive Positioning", purpose: "Learn basic defensive stance and movement principles" },
+            { id: 5, title: "Offensive Movement", purpose: "Understand cutting, screening, and creating space" },
+            { id: 6, title: "Game Rules & Refereeing", purpose: "Learn basketball rules and practice making calls" },
+            { id: 7, title: "Team Play & Strategy", purpose: "Develop teamwork skills and basic game strategies" },
+            { id: 8, title: "Advanced Dribbling", purpose: "Master crossover, behind-the-back, and pressure dribbling" },
+            { id: 9, title: "Game Situations", purpose: "Apply skills in realistic game scenarios and pressure situations" },
+            { id: 10, title: "Mastery Assessment", purpose: "Demonstrate all skills in a comprehensive final evaluation" }
         ];
 
-        // Quiz questions data
+        // Quiz questions data (same as before)
         const quizData = {
             values: {
                 title: "PE Values & Ethics Quiz",
@@ -1198,6 +1528,311 @@
         let score = 0;
         let selectedAnswers = [];
 
+        // Login and student management functions
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('studentName').value.trim();
+            const id = document.getElementById('studentId').value.trim();
+            const className = document.getElementById('studentClass').value;
+            
+            if (!name || !id || !className) {
+                alert('Please fill in all fields to continue.');
+                return;
+            }
+            
+            // Create student profile
+            currentStudent = {
+                name: name,
+                id: id,
+                class: className,
+                loginTime: new Date().toISOString()
+            };
+            
+            // Load or create student data
+            const studentKey = `student_${id}_${className}`;
+            const savedData = localStorage.getItem(studentKey);
+            
+            if (savedData) {
+                try {
+                    studentData = JSON.parse(savedData);
+                    // Ensure all required fields exist (for backwards compatibility)
+                    if (!studentData.quizzes) studentData.quizzes = {};
+                    if (!studentData.sports) studentData.sports = {};
+                    if (!studentData.sports.basketball) studentData.sports.basketball = { lessons: [] };
+                    
+                    // Initialize missing quiz data
+                    const quizTypes = ['values', 'body', 'motor', 'social', 'safety', 'nutrition'];
+                    quizTypes.forEach(type => {
+                        if (!studentData.quizzes[type]) {
+                            studentData.quizzes[type] = { 
+                                completed: false, 
+                                score: 0, 
+                                attempts: 0, 
+                                bestScore: 0,
+                                completionDate: null,
+                                timeSpent: 0
+                            };
+                        }
+                    });
+                    
+                    // Initialize missing basketball lessons
+                    if (studentData.sports.basketball.lessons.length === 0) {
+                        studentData.sports.basketball.lessons = basketballLessons.map(lesson => ({
+                            ...lesson,
+                            completed: false,
+                            progress: 0,
+                            lastAccessed: null,
+                            timeSpent: 0,
+                            completionDate: null
+                        }));
+                    }
+                    
+                    // Update session count
+                    studentData.totalSessions = (studentData.totalSessions || 0) + 1;
+                    
+                } catch (error) {
+                    console.error('Error loading student data:', error);
+                    // Create fresh data if corrupted
+                    studentData = createFreshStudentData(currentStudent);
+                }
+            } else {
+                // Initialize new student data
+                studentData = createFreshStudentData(currentStudent);
+            }
+            
+            // Update login info
+            studentData.profile = currentStudent;
+            studentData.lastLogin = new Date().toISOString();
+            
+            // Save data immediately
+            saveStudentData();
+            
+            // Show main app
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('mainApp').style.display = 'block';
+            
+            updateUserInterface();
+            updateProgressDisplay();
+            showMainMenu();
+            
+            // Auto-save every 30 seconds
+            startAutoSave();
+        }
+
+        function createFreshStudentData(student) {
+            return {
+                profile: student,
+                quizzes: {
+                    values: { completed: false, score: 0, attempts: 0, bestScore: 0, completionDate: null, timeSpent: 0 },
+                    body: { completed: false, score: 0, attempts: 0, bestScore: 0, completionDate: null, timeSpent: 0 },
+                    motor: { completed: false, score: 0, attempts: 0, bestScore: 0, completionDate: null, timeSpent: 0 },
+                    social: { completed: false, score: 0, attempts: 0, bestScore: 0, completionDate: null, timeSpent: 0 },
+                    safety: { completed: false, score: 0, attempts: 0, bestScore: 0, completionDate: null, timeSpent: 0 },
+                    nutrition: { completed: false, score: 0, attempts: 0, bestScore: 0, completionDate: null, timeSpent: 0 }
+                },
+                sports: {
+                    basketball: {
+                        lessons: basketballLessons.map(lesson => ({
+                            ...lesson,
+                            completed: false,
+                            progress: 0,
+                            lastAccessed: null,
+                            timeSpent: 0,
+                            completionDate: null
+                        }))
+                    }
+                },
+                totalSessions: 1,
+                totalTimeSpent: 0,
+                lastLogin: new Date().toISOString(),
+                createdDate: new Date().toISOString()
+            };
+        }
+
+        function logout() {
+            // Save final data
+            saveStudentData();
+            
+            // Stop auto-save
+            stopAutoSave();
+            
+            // Reset state
+            currentStudent = null;
+            studentData = {};
+            
+            // Show login screen
+            document.getElementById('mainApp').style.display = 'none';
+            document.getElementById('loginScreen').style.display = 'block';
+            
+            // Clear form
+            document.getElementById('studentName').value = '';
+            document.getElementById('studentId').value = '';
+            document.getElementById('studentClass').value = '';
+        }
+
+        function updateUserInterface() {
+            if (!currentStudent) return;
+            
+            document.getElementById('welcomeUser').textContent = `Welcome, ${currentStudent.name}!`;
+            document.getElementById('userClass').textContent = `Class: ${currentStudent.class}`;
+            
+            // Calculate total sessions
+            const sessions = studentData.totalSessions || 1;
+            document.getElementById('userProgress').textContent = `Session #${sessions}`;
+        }
+
+        function updateProgressDisplay() {
+            if (!studentData) return;
+            
+            // Calculate quiz statistics
+            const quizzes = studentData.quizzes;
+            const quizTypes = Object.keys(quizzes);
+            let completedQuizzes = 0;
+            let totalScore = 0;
+            let totalAttempts = 0;
+            
+            quizTypes.forEach(type => {
+                if (quizzes[type].completed) {
+                    completedQuizzes++;
+                    totalScore += quizzes[type].bestScore;
+                }
+                totalAttempts += quizzes[type].attempts;
+            });
+            
+            const averageScore = completedQuizzes > 0 ? Math.round(totalScore / completedQuizzes) : 0;
+            
+            // Calculate lesson progress
+            const basketballLessons = studentData.sports.basketball.lessons;
+            const completedLessons = basketballLessons.filter(lesson => lesson.completed).length;
+            
+            // Calculate overall progress
+            const quizProgress = (completedQuizzes / quizTypes.length) * 50; // 50% weight for quizzes
+            const lessonProgress = (completedLessons / basketballLessons.length) * 50; // 50% weight for lessons
+            const totalProgress = Math.round(quizProgress + lessonProgress);
+            
+            // Update display
+            document.getElementById('quizzesCompleted').textContent = completedQuizzes;
+            document.getElementById('averageScore').textContent = `${averageScore}%`;
+            document.getElementById('lessonsCompleted').textContent = completedLessons;
+            document.getElementById('totalProgress').textContent = `${totalProgress}%`;
+            
+            // Update progress bars
+            document.getElementById('sportsProgress').style.width = `${(completedLessons / basketballLessons.length) * 100}%`;
+            document.getElementById('quizProgress').style.width = `${(completedQuizzes / quizTypes.length) * 100}%`;
+            document.getElementById('basketballProgress').style.width = `${(completedLessons / basketballLessons.length) * 100}%`;
+            
+            // Update individual quiz progress bars
+            quizTypes.forEach(type => {
+                const element = document.getElementById(`${type}Progress`);
+                if (element) {
+                    const progress = quizzes[type].completed ? 100 : (quizzes[type].attempts > 0 ? 50 : 0);
+                    element.style.width = `${progress}%`;
+                }
+            });
+        }
+
+        let autoSaveInterval = null;
+        let sessionStartTime = null;
+
+        function saveStudentData() {
+            if (currentStudent && studentData) {
+                try {
+                    // Update total time spent if session is active
+                    if (sessionStartTime) {
+                        const sessionTime = Date.now() - sessionStartTime;
+                        studentData.totalTimeSpent = (studentData.totalTimeSpent || 0) + sessionTime;
+                        sessionStartTime = Date.now(); // Reset for next interval
+                    }
+                    
+                    const studentKey = `student_${currentStudent.id}_${currentStudent.class}`;
+                    const dataToSave = {
+                        ...studentData,
+                        lastSaved: new Date().toISOString()
+                    };
+                    
+                    localStorage.setItem(studentKey, JSON.stringify(dataToSave));
+                    
+                    // Also save to a master list for teacher access
+                    const masterKey = 'pe_master_student_list';
+                    let masterList = [];
+                    try {
+                        const existingList = localStorage.getItem(masterKey);
+                        if (existingList) {
+                            masterList = JSON.parse(existingList);
+                        }
+                    } catch (e) {
+                        console.warn('Could not load master list');
+                    }
+                    
+                    // Update or add student to master list
+                    const existingIndex = masterList.findIndex(s => 
+                        s.id === currentStudent.id && s.class === currentStudent.class
+                    );
+                    
+                    const studentSummary = {
+                        id: currentStudent.id,
+                        name: currentStudent.name,
+                        class: currentStudent.class,
+                        lastLogin: studentData.lastLogin,
+                        totalSessions: studentData.totalSessions,
+                        totalTimeSpent: studentData.totalTimeSpent,
+                        quizzesCompleted: Object.values(studentData.quizzes).filter(q => q.completed).length,
+                        averageScore: calculateAverageScore(),
+                        lessonsCompleted: studentData.sports.basketball.lessons.filter(l => l.completed).length
+                    };
+                    
+                    if (existingIndex >= 0) {
+                        masterList[existingIndex] = studentSummary;
+                    } else {
+                        masterList.push(studentSummary);
+                    }
+                    
+                    localStorage.setItem(masterKey, JSON.stringify(masterList));
+                    
+                } catch (error) {
+                    console.error('Error saving student data:', error);
+                    alert('Warning: Your progress may not be saved properly. Please contact your teacher if this continues.');
+                }
+            }
+        }
+
+        function calculateAverageScore() {
+            const completedQuizzes = Object.values(studentData.quizzes).filter(q => q.completed);
+            if (completedQuizzes.length === 0) return 0;
+            
+            const totalScore = completedQuizzes.reduce((sum, quiz) => sum + quiz.bestScore, 0);
+            return Math.round(totalScore / completedQuizzes.length);
+        }
+
+        function startAutoSave() {
+            // Clear any existing auto-save
+            if (autoSaveInterval) {
+                clearInterval(autoSaveInterval);
+            }
+            
+            // Start session timer
+            sessionStartTime = Date.now();
+            
+            // Auto-save every 30 seconds
+            autoSaveInterval = setInterval(() => {
+                saveStudentData();
+            }, 30000);
+            
+            // Save when page is about to close
+            window.addEventListener('beforeunload', () => {
+                saveStudentData();
+            });
+        }
+
+        function stopAutoSave() {
+            if (autoSaveInterval) {
+                clearInterval(autoSaveInterval);
+                autoSaveInterval = null;
+            }
+            sessionStartTime = null;
+        }
+
         function showMainMenu() {
             document.querySelectorAll('.section').forEach(section => {
                 section.classList.remove('active');
@@ -1225,18 +1860,77 @@
 
         function renderBasketballLessons() {
             const container = document.getElementById('basketballLessons');
-            container.innerHTML = basketballLessons.map(lesson => `
-                <div class="lesson-card" onclick="alert('Lesson ${lesson.id}: ${lesson.title}\\n\\n${lesson.purpose}\\n\\nThis would open the full lesson with assessments and skill tracking.')">
-                    <h3>Lesson ${lesson.id}: ${lesson.title}</h3>
-                    <p>${lesson.purpose}</p>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: ${lesson.progress}%"></div>
+            const lessons = studentData.sports.basketball.lessons;
+            
+            container.innerHTML = lessons.map(lesson => {
+                let cardClass = 'lesson-card';
+                let statusText = 'Not Started';
+                
+                if (lesson.completed) {
+                    cardClass += ' completed';
+                    statusText = 'Completed ✓';
+                } else if (lesson.progress > 0) {
+                    cardClass += ' in-progress';
+                    statusText = `${lesson.progress}% Complete`;
+                }
+                
+                return `
+                    <div class="${cardClass}" onclick="accessLesson(${lesson.id})">
+                        <h3>Lesson ${lesson.id}: ${lesson.title}</h3>
+                        <p>${lesson.purpose}</p>
+                        <div class="progress-indicator">
+                            <div class="progress-fill" style="width: ${lesson.progress}%"></div>
+                        </div>
+                        <small style="opacity: 0.9; margin-top: 10px; display: block;">
+                            ${statusText}
+                        </small>
                     </div>
-                    <small style="opacity: 0.8; margin-top: 10px; display: block;">
-                        ${lesson.progress}% Complete
-                    </small>
-                </div>
-            `).join('');
+                `;
+            }).join('');
+        }
+
+        function accessLesson(lessonId) {
+            const lesson = studentData.sports.basketball.lessons.find(l => l.id === lessonId);
+            const wasCompleted = lesson.completed;
+            
+            // Update last accessed time
+            lesson.lastAccessed = new Date().toISOString();
+            
+            // Simulate lesson progress (in real app, this would be based on actual completion)
+            if (!lesson.completed) {
+                lesson.progress = Math.min(lesson.progress + 20, 100);
+                lesson.timeSpent += 300000; // Add 5 minutes of practice time
+                
+                if (lesson.progress >= 100) {
+                    lesson.completed = true;
+                    lesson.completionDate = new Date().toISOString();
+                }
+            } else {
+                // Add practice time even for completed lessons
+                lesson.timeSpent += 180000; // Add 3 minutes for review
+            }
+            
+            saveStudentData();
+            updateProgressDisplay();
+            renderBasketballLessons();
+            
+            // Format time spent
+            const totalMinutes = Math.floor(lesson.timeSpent / 60000);
+            const hours = Math.floor(totalMinutes / 60);
+            const minutes = totalMinutes % 60;
+            const timeDisplay = hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
+            
+            let message = `Lesson ${lesson.id}: ${lesson.title}\n\n${lesson.purpose}\n\nProgress: ${lesson.progress}%\nPractice Time: ${timeDisplay}`;
+            
+            if (!wasCompleted && lesson.completed) {
+                message += '\n\n🎉 Congratulations! You completed this lesson for the first time!';
+            } else if (lesson.completed) {
+                message += '\n\n✅ Lesson completed! Great review session!';
+            } else {
+                message += '\n\n⏳ Keep practicing to complete this lesson!';
+            }
+            
+            alert(message);
         }
 
         function startQuiz(quizType) {
@@ -1244,6 +1938,10 @@
             currentQuestionIndex = 0;
             score = 0;
             selectedAnswers = [];
+            quizStartTime = Date.now(); // Start timing the quiz
+            
+            // Update quiz attempts
+            studentData.quizzes[quizType].attempts++;
             
             // Hide all sections and show only quiz container
             document.getElementById('mainMenu').style.display = 'none';
@@ -1301,10 +1999,13 @@
             };
 
             const intro = introData[quizType];
+            const quizStats = studentData.quizzes[quizType];
+            
             document.getElementById('quizContent').innerHTML = `
                 <div style="text-align: center; margin-bottom: 30px;">
                     <span style="font-size: 4em;">${currentQuiz.icon}</span>
                     <h2>${intro.title}</h2>
+                    ${quizStats.attempts > 0 ? `<p style="color: #666;">Attempt #${quizStats.attempts} ${quizStats.bestScore > 0 ? `• Best Score: ${quizStats.bestScore}%` : ''}</p>` : ''}
                 </div>
                 
                 <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 15px; margin-bottom: 25px;">
@@ -1416,6 +2117,8 @@
             renderQuiz();
         }
 
+        let quizStartTime = null;
+
         function showQuizResults() {
             const percentage = Math.round((score / currentQuiz.questions.length) * 100);
             let message = '';
@@ -1435,6 +2138,31 @@
                 color = '#dc3545';
             }
             
+            // Calculate time spent on quiz
+            const timeSpent = quizStartTime ? Date.now() - quizStartTime : 0;
+            
+            // Update student data
+            const quizType = Object.keys(quizData).find(key => quizData[key] === currentQuiz);
+            const wasCompleted = studentData.quizzes[quizType].completed;
+            
+            studentData.quizzes[quizType].score = percentage;
+            studentData.quizzes[quizType].completed = percentage >= 70; // 70% to pass
+            studentData.quizzes[quizType].bestScore = Math.max(studentData.quizzes[quizType].bestScore, percentage);
+            studentData.quizzes[quizType].timeSpent += timeSpent;
+            
+            // Set completion date if first time completing
+            if (!wasCompleted && percentage >= 70) {
+                studentData.quizzes[quizType].completionDate = new Date().toISOString();
+            }
+            
+            saveStudentData();
+            updateProgressDisplay();
+            
+            // Format time spent
+            const minutes = Math.floor(timeSpent / 60000);
+            const seconds = Math.floor((timeSpent % 60000) / 1000);
+            const timeDisplay = minutes > 0 ? `${minutes}m ${seconds}s` : `${seconds}s`;
+            
             document.getElementById('quizContent').innerHTML = `
                 <div style="text-align: center;">
                     <span style="font-size: 4em;">${currentQuiz.icon}</span>
@@ -1445,10 +2173,31 @@
                         <div class="score-number">${score}/${currentQuiz.questions.length}</div>
                         <p style="font-size: 1.5em; margin: 0;">${percentage}%</p>
                         <p style="margin: 15px 0 0 0;">${message}</p>
+                        ${studentData.quizzes[quizType].bestScore > percentage ? `<p style="margin: 10px 0 0 0; opacity: 0.9;">Personal Best: ${studentData.quizzes[quizType].bestScore}%</p>` : ''}
+                        ${!wasCompleted && percentage >= 70 ? `<p style="margin: 10px 0 0 0; opacity: 0.9;">🎉 First time completed!</p>` : ''}
+                        <p style="margin: 10px 0 0 0; opacity: 0.8; font-size: 0.9em;">Time: ${timeDisplay}</p>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 12px; margin: 20px 0; text-align: left;">
+                        <h4 style="margin: 0 0 15px 0; color: #333;">📊 Your Progress Summary</h4>
+                        <p style="margin: 5px 0; color: #666;">
+                            <strong>Attempts:</strong> ${studentData.quizzes[quizType].attempts}
+                        </p>
+                        <p style="margin: 5px 0; color: #666;">
+                            <strong>Best Score:</strong> ${studentData.quizzes[quizType].bestScore}%
+                        </p>
+                        <p style="margin: 5px 0; color: #666;">
+                            <strong>Status:</strong> ${studentData.quizzes[quizType].completed ? '✅ Completed' : '⏳ In Progress'}
+                        </p>
+                        ${studentData.quizzes[quizType].completionDate ? `
+                            <p style="margin: 5px 0; color: #666;">
+                                <strong>Completed:</strong> ${new Date(studentData.quizzes[quizType].completionDate).toLocaleDateString()}
+                            </p>
+                        ` : ''}
                     </div>
                     
                     <div style="margin-top: 30px;">
-                        <button class="btn" onclick="startQuiz('${Object.keys(quizData).find(key => quizData[key] === currentQuiz)}')">
+                        <button class="btn" onclick="startQuiz('${quizType}')">
                             🔄 Retake Quiz
                         </button>
                         <button class="btn btn-primary" onclick="showSection('quizzes')">
@@ -1460,7 +2209,12 @@
         }
 
         // Initialize the app
-        showMainMenu();
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show login screen by default
+            document.getElementById('loginScreen').style.display = 'block';
+            document.getElementById('mainApp').style.display = 'none';
+        });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9871882f3784d4a9',t:'MTc1OTIxMjM2Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9871f4480637d4a9',t:'MTc1OTIxNjc5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
